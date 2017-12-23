@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 @JsonIgnoreProperties( ignoreUnknown = true )
 @Data
 @ToString( callSuper = true )
-public class HeatingElementDTO extends BooleanDTO
+public class HeaterDTO extends BooleanDTO
 {
 	@Override
 	public String getRoute()
 	{
-		return "heatingelement.v1";
+		return "heater.v1";
 	}
 }

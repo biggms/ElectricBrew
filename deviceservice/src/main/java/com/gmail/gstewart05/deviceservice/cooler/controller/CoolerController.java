@@ -1,35 +1,35 @@
-package com.gmail.gstewart05.deviceservice.heatingelement.controller;
+package com.gmail.gstewart05.deviceservice.cooler.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.gmail.gstewart05.deviceservice.common.controller.AbstractDeviceController;
 import com.gmail.gstewart05.deviceservice.common.service.devices.AbstractDeviceService;
-import com.gmail.gstewart05.deviceservice.heatingelement.model.devices.HeatingElement;
-import com.gmail.gstewart05.deviceservice.heatingelement.service.HeatingElementService;
+import com.gmail.gstewart05.deviceservice.cooler.model.devices.Cooler;
+import com.gmail.gstewart05.deviceservice.cooler.service.CoolerService;
 import com.gmail.gstewart05.dto.BooleanDTO;
-import com.gmail.gstewart05.dto.HeatingElementDTO;
+import com.gmail.gstewart05.dto.CoolerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping( "/heatingelement/v1" )
+@RequestMapping( "/cooler/v1" )
 @RestController
 @SuppressWarnings( "unchecked" )
-public class HeatingElementController extends AbstractDeviceController< HeatingElement, HeatingElementDTO >
+public class CoolerController extends AbstractDeviceController< Cooler, CoolerDTO >
 {
 	@Autowired
-	HeatingElementService theHeatingElementService;
+	CoolerService theCoolerService;
 
 	@Override
-	public HeatingElementService getService()
+	public CoolerService getService()
 	{
-		return theHeatingElementService;
+		return theCoolerService;
 	}
 
 	@Override
 	public String getSimpleName()
 	{
-		return HeatingElement.class.getSimpleName();
+		return Cooler.class.getSimpleName();
 	}
 }

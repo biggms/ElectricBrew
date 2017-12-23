@@ -1,8 +1,8 @@
-package com.gmail.gstewart05.deviceservice.heatingelement.mq;
+package com.gmail.gstewart05.deviceservice.heater.mq;
 
-import com.gmail.gstewart05.dto.HeatingElementDTO;
-import com.gmail.gstewart05.deviceservice.heatingelement.service.HeatingElementChangeService;
-import com.gmail.gstewart05.deviceservice.heatingelement.service.HeatingElementService;
+import com.gmail.gstewart05.dto.HeaterDTO;
+import com.gmail.gstewart05.deviceservice.heater.service.HeaterChangeService;
+import com.gmail.gstewart05.deviceservice.heater.service.HeaterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -18,33 +18,33 @@ import javax.transaction.Transactional;
 
 @Slf4j
 @Component
-public class HeatingElementReceiver
+public class HeaterReceiver
 {
 	@Autowired
-	HeatingElementChangeService theHeatingElementChangeService;
+	HeaterChangeService theHeaterChangeService;
 
 	@Autowired
-	HeatingElementService theHeatingElementService;
+	HeaterService theHeaterService;
 
 	@Transactional
 	@RabbitListener( bindings = @QueueBinding(
 			value = @Queue( autoDelete = "true", durable = "false" ),
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
-			key = "heatingelement.v1.statechange"
+			key = "heater.v1.statechange"
 	) )
-	public void receiveChange( @Payload HeatingElementDTO pHeatingElementDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveChange( @Payload HeaterDTO pHeaterDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theHeatingElementChangeService.handleNewChange( pHeatingElementDTO );
+		theHeaterChangeService.handleNewChange( pHeaterDTO );
 	}
 
 	@Transactional
 	@RabbitListener( bindings = @QueueBinding(
 			value = @Queue( autoDelete = "true", durable = "false" ),
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
-			key = "heatingelement.v1.setstate"
+			key = "heater.v1.setstate"
 	) )
-	public void receiveChangeRequest( @Payload HeatingElementDTO pHeatingElementDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveChangeRequest( @Payload HeaterDTO pHeaterDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theHeatingElementService.handleChangeRequest( pHeatingElementDTO );
+		theHeaterService.handleChangeRequest( pHeaterDTO );
 	}
 }

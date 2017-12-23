@@ -1,7 +1,7 @@
-package com.gmail.gstewart05.deviceservice.heatingelement.model.change;
+package com.gmail.gstewart05.deviceservice.heater.model.change;
 
 import com.gmail.gstewart05.deviceservice.common.model.change.AbstractBooleanDeviceChange;
-import com.gmail.gstewart05.deviceservice.heatingelement.model.devices.HeatingElement;
+import com.gmail.gstewart05.deviceservice.heater.model.devices.Heater;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -13,10 +13,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @ToString( callSuper = true )
-public class HeatingElementChange extends AbstractBooleanDeviceChange< HeatingElement >
+public class HeaterChange extends AbstractBooleanDeviceChange< Heater >
 {
 	@Builder
-	HeatingElementChange( String id, HeatingElement device, Date createDate, boolean enabled )
+	HeaterChange( String id, Heater device, Date createDate, boolean enabled )
 	{
 		super( id, device, createDate, enabled );
 	}

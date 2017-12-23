@@ -1,4 +1,4 @@
-package com.gmail.gstewart05.deviceservice.heatingelement.model.devices;
+package com.gmail.gstewart05.deviceservice.cooler.model.devices;
 
 import com.gmail.gstewart05.deviceservice.common.model.devices.AbstractBooleanActuator;
 import lombok.*;
@@ -11,10 +11,10 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Data
 @ToString( callSuper = true )
-public class HeatingElement extends AbstractBooleanActuator
+public class Cooler extends AbstractBooleanActuator
 {
 	@Builder
-	public HeatingElement( String id, String name, boolean enabled, boolean enableRequested )
+	public Cooler( String id, String name, boolean enabled, boolean enableRequested )
 	{
 		super( id, name, enabled, enableRequested);
 	}

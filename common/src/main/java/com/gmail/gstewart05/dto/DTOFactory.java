@@ -13,12 +13,20 @@ public class DTOFactory
 
 	private TopicExchange theExchange = new TopicExchange( "amq.topic" );
 
-	public HeatingElementDTO getHeatingElementDTO()
+	public CoolerDTO getCoolerDTO()
 	{
-		HeatingElementDTO lHeatingElementDTO = new HeatingElementDTO();
-		lHeatingElementDTO.setTemplate( theTemplate );
-		lHeatingElementDTO.setExchange( theExchange );
-		return lHeatingElementDTO;
+		CoolerDTO lCoolerDTO = new CoolerDTO();
+		lCoolerDTO.setTemplate( theTemplate );
+		lCoolerDTO.setExchange( theExchange );
+		return lCoolerDTO;
+	}
+
+	public HeaterDTO getHeaterDTO()
+	{
+		HeaterDTO lHeaterDTO = new HeaterDTO();
+		lHeaterDTO.setTemplate( theTemplate );
+		lHeaterDTO.setExchange( theExchange );
+		return lHeaterDTO;
 	}
 
 	public TemperatureDTO getTemperatureProbeDTO()
