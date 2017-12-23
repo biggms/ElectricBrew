@@ -12,14 +12,14 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Data
 @ToString( callSuper = true )
-public class TemperatureProbe extends AbstractDoubleDevice
+public class Temperature extends AbstractDoubleDevice
 {
 	@Column( nullable = false, unique = true )
 	@NonNull
 	String mac;
 
 	@Builder
-	TemperatureProbe( String id, String name, double currentValue, String mac )
+	Temperature( String id, String name, double currentValue, String mac )
 	{
 		super( id, name, currentValue );
 		setMac( mac );

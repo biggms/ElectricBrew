@@ -12,10 +12,12 @@ import com.gmail.gstewart05.deviceservice.level.model.devices.Level;
 import com.gmail.gstewart05.deviceservice.level.service.LevelService;
 import com.gmail.gstewart05.deviceservice.pump.model.devices.Pump;
 import com.gmail.gstewart05.deviceservice.pump.service.PumpService;
-import com.gmail.gstewart05.deviceservice.temperature.model.devices.TemperatureProbe;
-import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureProbeService;
+import com.gmail.gstewart05.deviceservice.temperature.model.devices.Temperature;
+import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureService;
 import com.gmail.gstewart05.deviceservice.valve.model.devices.Valve;
 import com.gmail.gstewart05.deviceservice.valve.service.ValveService;
+import com.gmail.gstewart05.deviceservice.volume.model.devices.Volume;
+import com.gmail.gstewart05.deviceservice.volume.service.VolumeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -36,18 +38,18 @@ public class DeviceServer
 	}
 
 	@Bean
-	public CommandLineRunner demo( TemperatureProbeService pTemperatureProbeService, HeaterService pHeaterService, CoolerService pCoolerService, PumpService pPumpService, ValveService pValveService, LevelService pLevelService, FlowService pFlowService, BubblerService pBubblerService )
+	public CommandLineRunner demo( TemperatureService pTemperatureService, HeaterService pHeaterService, CoolerService pCoolerService, PumpService pPumpService, ValveService pValveService, LevelService pLevelService, FlowService pFlowService, BubblerService pBubblerService, VolumeService pVolumeService )
 	{
 		return ( args ) ->
 		{
-			TemperatureProbe lTemperatureProbe = TemperatureProbe.builder().name( "Cold Water" ).mac( "28ff220b00150208" ).build();
-			pTemperatureProbeService.save( lTemperatureProbe );
+			Temperature lTemperature = Temperature.builder().name( "Cold Water" ).mac( "28ff220b00150208" ).build();
+			pTemperatureService.save( lTemperature );
 
-			lTemperatureProbe = TemperatureProbe.builder().name( "Warm Water" ).mac( "28ff6a02641403ed" ).build();
-			pTemperatureProbeService.save( lTemperatureProbe );
+			lTemperature = Temperature.builder().name( "Warm Water" ).mac( "28ff6a02641403ed" ).build();
+			pTemperatureService.save( lTemperature );
 
-			lTemperatureProbe = TemperatureProbe.builder().name( "Fermenter" ).mac( "28ff983d6414031a" ).build();
-			pTemperatureProbeService.save( lTemperatureProbe );
+			lTemperature = Temperature.builder().name( "Fermenter" ).mac( "28ff983d6414031a" ).build();
+			pTemperatureService.save( lTemperature );
 
 			Heater lHeater = Heater.builder().name( "Warm Water" ).build();
 			pHeaterService.save( lHeater );
@@ -108,6 +110,9 @@ public class DeviceServer
 
 			Bubbler lBubbler = Bubbler.builder().name( "Fermenter" ).build();
 			pBubblerService.save( lBubbler );
+
+			Volume lVolume = Volume.builder().name( "Fermenter" ).build();
+			pVolumeService.save( lVolume );
 		};
 	}
 }

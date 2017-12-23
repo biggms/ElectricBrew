@@ -1,7 +1,7 @@
-package com.gmail.gstewart05.deviceservice.temperature.model.change;
+package com.gmail.gstewart05.deviceservice.volume.model.change;
 
 import com.gmail.gstewart05.deviceservice.common.model.change.AbstractDoubleDeviceChange;
-import com.gmail.gstewart05.deviceservice.temperature.model.devices.Temperature;
+import com.gmail.gstewart05.deviceservice.volume.model.devices.Volume;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,10 +16,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @ToString( callSuper = true )
-public class TemperatureChange extends AbstractDoubleDeviceChange< Temperature >
+public class VolumeChange extends AbstractDoubleDeviceChange< Volume >
 {
 	@Builder
-	protected TemperatureChange( String id, Temperature device, Date createDate, double value )
+	protected VolumeChange( String id, Volume device, Date createDate, double value )
 	{
 		super( id, device, createDate, value );
 	}

@@ -61,7 +61,7 @@ public class DTOFactory
 		return lPumpDTO;
 	}
 
-	public TemperatureDTO getTemperatureProbeDTO()
+	public TemperatureDTO getTemperatureDTO()
 	{
 		TemperatureDTO lTemperatureDTO = new TemperatureDTO();
 		lTemperatureDTO.setTemplate( theTemplate );
@@ -75,5 +75,13 @@ public class DTOFactory
 		lValveDTO.setTemplate( theTemplate );
 		lValveDTO.setExchange( theExchange );
 		return lValveDTO;
+	}
+
+	public VolumeDTO getVolumeDTO()
+	{
+		VolumeDTO lVolumeDTO = new VolumeDTO();
+		lVolumeDTO.setTemplate( theTemplate );
+		lVolumeDTO.setExchange( theExchange );
+		return lVolumeDTO;
 	}
 }

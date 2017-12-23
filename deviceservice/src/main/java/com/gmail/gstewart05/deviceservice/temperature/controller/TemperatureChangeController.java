@@ -3,18 +3,18 @@ package com.gmail.gstewart05.deviceservice.temperature.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gmail.gstewart05.deviceservice.common.controller.AbstractDeviceChangeController;
 import com.gmail.gstewart05.deviceservice.temperature.model.change.TemperatureChange;
-import com.gmail.gstewart05.deviceservice.temperature.model.devices.TemperatureProbe;
+import com.gmail.gstewart05.deviceservice.temperature.model.devices.Temperature;
 import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureChangeService;
-import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureProbeService;
+import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureService;
 import com.gmail.gstewart05.dto.TemperatureDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping( "/temperaturereading/v1" )
+@RequestMapping( "/temperaturechange/v1" )
 @RestController
 @SuppressWarnings( "unchecked" )
-public class TemperatureChangeController extends AbstractDeviceChangeController< TemperatureProbe, TemperatureDTO, TemperatureChange >
+public class TemperatureChangeController extends AbstractDeviceChangeController< Temperature, TemperatureDTO, TemperatureChange >
 {
 	ObjectMapper theObjectMapper = new ObjectMapper();
 
@@ -22,7 +22,7 @@ public class TemperatureChangeController extends AbstractDeviceChangeController<
 	TemperatureChangeService theTemperatureChangeService;
 
 	@Autowired
-	TemperatureProbeService theTemperatureProbeService;
+	TemperatureService theTemperatureService;
 
 	@Override
 	public TemperatureChangeService getChangeService()
@@ -37,14 +37,14 @@ public class TemperatureChangeController extends AbstractDeviceChangeController<
 	}
 
 	@Override
-	public TemperatureProbeService getDeviceService()
+	public TemperatureService getDeviceService()
 	{
-		return theTemperatureProbeService;
+		return theTemperatureService;
 	}
 
 	@Override
 	public String getDeviceSimpleName()
 	{
-		return TemperatureProbe.class.getSimpleName();
+		return Temperature.class.getSimpleName();
 	}
 }

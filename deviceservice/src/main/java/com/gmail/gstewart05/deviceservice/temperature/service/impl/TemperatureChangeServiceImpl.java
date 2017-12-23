@@ -3,10 +3,10 @@ package com.gmail.gstewart05.deviceservice.temperature.service.impl;
 import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceChangeRepository;
 import com.gmail.gstewart05.deviceservice.common.service.change.impl.AbstractDoubleDeviceChangeServiceImpl;
 import com.gmail.gstewart05.deviceservice.temperature.model.change.TemperatureChange;
-import com.gmail.gstewart05.deviceservice.temperature.model.devices.TemperatureProbe;
+import com.gmail.gstewart05.deviceservice.temperature.model.devices.Temperature;
 import com.gmail.gstewart05.deviceservice.temperature.model.repo.TemperatureChangeRepository;
 import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureChangeService;
-import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureProbeService;
+import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureService;
 import com.gmail.gstewart05.dto.TemperatureDTO;
 import com.gmail.gstewart05.utils.LogUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class TemperatureChangeServiceImpl extends AbstractDoubleDeviceChangeServiceImpl< TemperatureProbe, TemperatureDTO, TemperatureChange > implements TemperatureChangeService
+public class TemperatureChangeServiceImpl extends AbstractDoubleDeviceChangeServiceImpl< Temperature, TemperatureDTO, TemperatureChange > implements TemperatureChangeService
 {
 	@Autowired
 	TemperatureChangeRepository theRepository;
 
 	@Autowired
-	TemperatureProbeService theTemperatureProbeService;
+	TemperatureService theTemperatureService;
 
 	@Autowired
 	private LogUtil theLogUtil;
@@ -33,9 +33,9 @@ public class TemperatureChangeServiceImpl extends AbstractDoubleDeviceChangeServ
 	}
 
 	@Override
-	public TemperatureProbeService getDeviceService()
+	public TemperatureService getDeviceService()
 	{
-		return theTemperatureProbeService;
+		return theTemperatureService;
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class TemperatureChangeServiceImpl extends AbstractDoubleDeviceChangeServ
 	}
 
 	@Override
-	public AbstractDeviceChangeRepository< TemperatureProbe, TemperatureChange > getRepository()
+	public AbstractDeviceChangeRepository< Temperature, TemperatureChange > getRepository()
 	{
 		return theRepository;
 	}
@@ -53,15 +53,15 @@ public class TemperatureChangeServiceImpl extends AbstractDoubleDeviceChangeServ
 	@Override
 	public void handleNewChange( TemperatureDTO pDTO )
 	{
-		TemperatureProbe lProbe = theTemperatureProbeService.getByMac( pDTO.getMac() );
+		Temperature lEntity = theTemperatureService.getByMac( pDTO.getMac() );
 
-		if( lProbe == null )
+		if( lEntity == null )
 		{
 			theLogUtil.warn( "Unknown {0}: Mac: {1}", getSimpleName(), pDTO.getMac() );
 			return;
 		}
 
-		pDTO.setName( lProbe.getName() );
+		pDTO.setName( lEntity.getName() );
 		super.handleNewChange( pDTO );
 	}
 }
