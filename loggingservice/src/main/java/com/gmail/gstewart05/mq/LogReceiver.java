@@ -3,6 +3,7 @@ package com.gmail.gstewart05.mq;
 import com.gmail.gstewart05.dto.LogDTO;
 import com.gmail.gstewart05.model.Log;
 import com.gmail.gstewart05.service.LogService;
+import com.gmail.gstewart05.utils.Level;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-import com.gmail.gstewart05.utils.Level;
 
 import javax.transaction.Transactional;
 

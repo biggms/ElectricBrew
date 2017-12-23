@@ -15,6 +15,7 @@ public abstract class AbstractDeviceController< T extends AbstractDevice, S exte
 	ObjectMapper theObjectMapper = new ObjectMapper();
 
 	public abstract AbstractDeviceService< T, S > getService();
+
 	public abstract String getSimpleName();
 
 	@GetMapping( "" )
@@ -38,7 +39,7 @@ public abstract class AbstractDeviceController< T extends AbstractDevice, S exte
 	}
 
 	@PutMapping( "/{id}" )
-	@SuppressWarnings("Duplicates")
+	@SuppressWarnings( "Duplicates" )
 	public ResponseEntity update( @PathVariable( "id" ) String pID, @RequestBody T pEntity )
 	{
 		T lEntity = getService().getById( pID );
@@ -61,7 +62,7 @@ public abstract class AbstractDeviceController< T extends AbstractDevice, S exte
 	}
 
 	@DeleteMapping( "/{id}" )
-	@SuppressWarnings("Duplicates")
+	@SuppressWarnings( "Duplicates" )
 	public ResponseEntity delete( @PathVariable( "id" ) String pID )
 	{
 		T lEntity = getService().getById( pID );

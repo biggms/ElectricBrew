@@ -6,5 +6,5 @@ import com.gmail.gstewart05.dto.PumpDTO;
 
 public interface PumpService extends AbstractBooleanActuatorService< Pump, PumpDTO >
 {
-	
+
 }

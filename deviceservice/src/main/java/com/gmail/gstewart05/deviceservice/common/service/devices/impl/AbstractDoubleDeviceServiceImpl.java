@@ -2,7 +2,6 @@ package com.gmail.gstewart05.deviceservice.common.service.devices.impl;
 
 import com.gmail.gstewart05.deviceservice.common.model.devices.AbstractDoubleDevice;
 import com.gmail.gstewart05.deviceservice.common.service.devices.AbstractDoubleDeviceService;
-import com.gmail.gstewart05.deviceservice.temperature.model.devices.TemperatureProbe;
 import com.gmail.gstewart05.dto.DoubleDTO;
 import com.gmail.gstewart05.utils.LogUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +16,7 @@ public abstract class AbstractDoubleDeviceServiceImpl< T extends AbstractDoubleD
 	LogUtil theLogUtil;
 
 	public abstract DoubleDTO getDTO();
+
 	public abstract String getSimpleName();
 
 	@Override

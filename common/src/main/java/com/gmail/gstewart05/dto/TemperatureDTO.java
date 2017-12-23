@@ -1,9 +1,8 @@
 package com.gmail.gstewart05.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
-import lombok.experimental.Accessors;
-import org.springframework.stereotype.Component;
+import lombok.Data;
+import lombok.ToString;
 
 @JsonIgnoreProperties( ignoreUnknown = true )
 @Data

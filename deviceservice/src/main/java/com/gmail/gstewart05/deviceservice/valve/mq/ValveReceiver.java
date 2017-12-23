@@ -1,8 +1,8 @@
 package com.gmail.gstewart05.deviceservice.valve.mq;
 
-import com.gmail.gstewart05.dto.ValveDTO;
 import com.gmail.gstewart05.deviceservice.valve.service.ValveChangeService;
 import com.gmail.gstewart05.deviceservice.valve.service.ValveService;
+import com.gmail.gstewart05.dto.ValveDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;

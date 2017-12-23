@@ -1,7 +1,9 @@
 package com.gmail.gstewart05.deviceservice.common.model.devices;
 
 import com.gmail.gstewart05.model.AbstractEntity;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

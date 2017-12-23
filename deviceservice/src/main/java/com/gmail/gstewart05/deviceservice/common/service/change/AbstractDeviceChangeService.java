@@ -10,5 +10,6 @@ import java.util.List;
 public interface AbstractDeviceChangeService< T extends AbstractDevice, S extends DTO, R extends AbstractDeviceChange< T > > extends AbstractService< R >
 {
 	List< R > getByDevice( T pDevice );
+
 	void handleNewChange( S pDTO );
 }

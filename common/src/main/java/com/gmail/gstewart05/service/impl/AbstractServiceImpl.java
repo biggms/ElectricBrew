@@ -15,10 +15,10 @@ import java.util.List;
 @Slf4j
 public abstract class AbstractServiceImpl< T extends AbstractEntity > implements AbstractService< T >
 {
-	public abstract CrudRepository< T, String > getRepository();
-
 	@Autowired
 	private LogUtil theLogUtil;
+
+	public abstract CrudRepository< T, String > getRepository();
 
 	@Override
 	public List< T > getAll()

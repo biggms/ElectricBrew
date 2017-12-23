@@ -3,6 +3,7 @@ package com.gmail.gstewart05.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.gmail.gstewart05.service.LogService;
+import com.gmail.gstewart05.utils.Level;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.gmail.gstewart05.utils.Level;
 
 @RequestMapping( "/log/v1" )
 @RestController

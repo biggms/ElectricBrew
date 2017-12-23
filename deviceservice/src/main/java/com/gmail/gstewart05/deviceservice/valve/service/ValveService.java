@@ -6,5 +6,5 @@ import com.gmail.gstewart05.dto.ValveDTO;
 
 public interface ValveService extends AbstractBooleanActuatorService< Valve, ValveDTO >
 {
-	
+
 }

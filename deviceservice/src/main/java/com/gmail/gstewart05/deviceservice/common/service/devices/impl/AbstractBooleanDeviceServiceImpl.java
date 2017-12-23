@@ -12,6 +12,7 @@ public abstract class AbstractBooleanDeviceServiceImpl< T extends AbstractBoolea
 	LogUtil theLogUtil;
 
 	public abstract BooleanDTO getDTO();
+
 	public abstract String getSimpleName();
 
 	@Override

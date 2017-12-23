@@ -2,7 +2,6 @@ package com.gmail.gstewart05.deviceservice.temperature.model.repo;
 
 import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceRepository;
 import com.gmail.gstewart05.deviceservice.temperature.model.devices.TemperatureProbe;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

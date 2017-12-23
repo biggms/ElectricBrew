@@ -3,8 +3,6 @@ package com.gmail.gstewart05.deviceservice.common.service.devices.impl;
 import com.gmail.gstewart05.deviceservice.common.model.devices.AbstractBooleanActuator;
 import com.gmail.gstewart05.deviceservice.common.service.devices.AbstractBooleanActuatorService;
 import com.gmail.gstewart05.dto.BooleanDTO;
-import com.gmail.gstewart05.utils.LogUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component

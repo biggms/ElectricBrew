@@ -12,6 +12,7 @@ public abstract class AbstractDoubleActuatorServiceImpl< T extends AbstractDoubl
 	LogUtil theLogUtil;
 
 	public abstract DoubleDTO getDTO();
+
 	public abstract String getSimpleName();
 
 	@Override

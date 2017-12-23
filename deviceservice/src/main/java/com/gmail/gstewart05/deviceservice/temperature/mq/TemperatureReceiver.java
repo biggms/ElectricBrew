@@ -1,7 +1,7 @@
 package com.gmail.gstewart05.deviceservice.temperature.mq;
 
-import com.gmail.gstewart05.dto.TemperatureDTO;
 import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureChangeService;
+import com.gmail.gstewart05.dto.TemperatureDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;

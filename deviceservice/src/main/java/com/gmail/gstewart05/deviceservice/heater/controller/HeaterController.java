@@ -5,7 +5,8 @@ import com.gmail.gstewart05.deviceservice.heater.model.devices.Heater;
 import com.gmail.gstewart05.deviceservice.heater.service.HeaterService;
 import com.gmail.gstewart05.dto.HeaterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping( "/heater/v1" )
 @RestController

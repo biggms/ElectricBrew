@@ -1,8 +1,7 @@
 package com.gmail.gstewart05.model;
 
-import lombok.*;
-import lombok.experimental.Accessors;
-import lombok.experimental.Delegate;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

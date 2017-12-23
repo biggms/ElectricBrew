@@ -2,10 +2,10 @@ package com.gmail.gstewart05.service;
 
 import com.gmail.gstewart05.model.Log;
 import com.gmail.gstewart05.model.LogRepository;
+import com.gmail.gstewart05.utils.Level;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.gmail.gstewart05.utils.Level;
 
 import java.util.List;
 

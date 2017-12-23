@@ -3,14 +3,16 @@ package com.gmail.gstewart05.deviceservice.temperature.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.gmail.gstewart05.deviceservice.common.controller.AbstractDeviceController;
-import com.gmail.gstewart05.deviceservice.common.service.devices.AbstractDeviceService;
 import com.gmail.gstewart05.deviceservice.temperature.model.devices.TemperatureProbe;
 import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureProbeService;
 import com.gmail.gstewart05.dto.TemperatureDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping( "/temperatureprobe/v1" )
 @RestController

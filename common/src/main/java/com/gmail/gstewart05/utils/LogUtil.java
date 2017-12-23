@@ -11,39 +11,37 @@ import java.text.MessageFormat;
 @Component
 public class LogUtil
 {
+	private static LogUtil theLogUtil;
 	@Autowired
 	private RabbitTemplate theTemplate;
-
 	private TopicExchange theExchange = new TopicExchange( "amq.topic" );
 
-	private static LogUtil theLogUtil;
-
-	public void info( String pMessage, Object ... pObjects )
+	public void info( String pMessage, Object... pObjects )
 	{
 		log( Level.INFO, pMessage, pObjects );
 	}
 
-	public void warn( String pMessage, Object ... pObjects )
+	public void warn( String pMessage, Object... pObjects )
 	{
 		log( Level.WARN, pMessage, pObjects );
 	}
 
-	public void debug( String pMessage, Object ... pObjects )
+	public void debug( String pMessage, Object... pObjects )
 	{
 		log( Level.DEBUG, pMessage, pObjects );
 	}
 
-	public void error( String pMessage, Object ... pObjects )
+	public void error( String pMessage, Object... pObjects )
 	{
 		log( Level.ERROR, pMessage, pObjects );
 	}
 
-	public void trace( String pMessage, Object ... pObjects )
+	public void trace( String pMessage, Object... pObjects )
 	{
 		log( Level.TRACE, pMessage, pObjects );
 	}
 
-	private void log( Level pLevel, String pMessage, Object ... pObjects )
+	private void log( Level pLevel, String pMessage, Object... pObjects )
 	{
 		LogDTO lLogDTO = new LogDTO();
 		lLogDTO.setMessage( MessageFormat.format( pMessage, pObjects ) );

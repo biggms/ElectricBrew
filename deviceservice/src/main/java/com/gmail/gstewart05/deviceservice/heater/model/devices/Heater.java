@@ -1,7 +1,10 @@
 package com.gmail.gstewart05.deviceservice.heater.model.devices;
 
 import com.gmail.gstewart05.deviceservice.common.model.devices.AbstractBooleanActuator;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
@@ -16,6 +19,6 @@ public class Heater extends AbstractBooleanActuator
 	@Builder
 	public Heater( String id, String name, boolean enabled, boolean enableRequested )
 	{
-		super( id, name, enabled, enableRequested);
+		super( id, name, enabled, enableRequested );
 	}
 }

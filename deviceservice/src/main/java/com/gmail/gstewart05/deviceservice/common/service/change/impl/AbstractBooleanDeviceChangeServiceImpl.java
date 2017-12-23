@@ -16,7 +16,9 @@ public abstract class AbstractBooleanDeviceChangeServiceImpl< T extends Abstract
 	LogUtil theLogUtil;
 
 	public abstract R getNew();
+
 	public abstract AbstractBooleanDeviceService< T, S > getDeviceService();
+
 	public abstract String getSimpleName();
 
 	@Override

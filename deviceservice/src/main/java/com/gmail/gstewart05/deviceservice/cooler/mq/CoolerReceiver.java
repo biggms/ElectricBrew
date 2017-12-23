@@ -1,8 +1,8 @@
 package com.gmail.gstewart05.deviceservice.cooler.mq;
 
-import com.gmail.gstewart05.dto.CoolerDTO;
 import com.gmail.gstewart05.deviceservice.cooler.service.CoolerChangeService;
 import com.gmail.gstewart05.deviceservice.cooler.service.CoolerService;
+import com.gmail.gstewart05.dto.CoolerDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;

@@ -6,5 +6,5 @@ import com.gmail.gstewart05.dto.CoolerDTO;
 
 public interface CoolerService extends AbstractBooleanActuatorService< Cooler, CoolerDTO >
 {
-	
+
 }

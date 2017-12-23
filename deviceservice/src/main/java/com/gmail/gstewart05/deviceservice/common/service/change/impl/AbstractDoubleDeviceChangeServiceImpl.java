@@ -16,7 +16,9 @@ public abstract class AbstractDoubleDeviceChangeServiceImpl< T extends AbstractD
 	LogUtil theLogUtil;
 
 	public abstract R getNew();
+
 	public abstract AbstractDoubleDeviceService< T, S > getDeviceService();
+
 	public abstract String getSimpleName();
 
 	@Override

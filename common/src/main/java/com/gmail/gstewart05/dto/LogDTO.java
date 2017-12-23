@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gmail.gstewart05.utils.Level;
 import lombok.*;
 
-import java.text.MessageFormat;
 import java.util.Date;
 
 @ToString

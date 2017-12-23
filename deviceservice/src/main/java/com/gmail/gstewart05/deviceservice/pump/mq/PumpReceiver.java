@@ -1,8 +1,8 @@
 package com.gmail.gstewart05.deviceservice.pump.mq;
 
-import com.gmail.gstewart05.dto.PumpDTO;
 import com.gmail.gstewart05.deviceservice.pump.service.PumpChangeService;
 import com.gmail.gstewart05.deviceservice.pump.service.PumpService;
+import com.gmail.gstewart05.dto.PumpDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;

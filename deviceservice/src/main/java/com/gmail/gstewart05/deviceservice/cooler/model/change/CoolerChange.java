@@ -2,10 +2,13 @@ package com.gmail.gstewart05.deviceservice.cooler.model.change;
 
 import com.gmail.gstewart05.deviceservice.common.model.change.AbstractBooleanDeviceChange;
 import com.gmail.gstewart05.deviceservice.cooler.model.devices.Cooler;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity

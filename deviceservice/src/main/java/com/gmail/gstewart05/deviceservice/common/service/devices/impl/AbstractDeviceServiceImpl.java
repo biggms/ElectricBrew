@@ -5,8 +5,6 @@ import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceReposi
 import com.gmail.gstewart05.deviceservice.common.service.devices.AbstractDeviceService;
 import com.gmail.gstewart05.dto.DTO;
 import com.gmail.gstewart05.service.impl.AbstractServiceImpl;
-import com.gmail.gstewart05.utils.LogUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
