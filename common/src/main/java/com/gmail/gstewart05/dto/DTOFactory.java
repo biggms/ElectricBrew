@@ -21,6 +21,14 @@ public class DTOFactory
 		return lCoolerDTO;
 	}
 
+	public FlowDTO getFlowDTO()
+	{
+		FlowDTO lFlowDTO = new FlowDTO();
+		lFlowDTO.setTemplate( theTemplate );
+		lFlowDTO.setExchange( theExchange );
+		return lFlowDTO;
+	}
+
 	public HeaterDTO getHeaterDTO()
 	{
 		HeaterDTO lHeaterDTO = new HeaterDTO();

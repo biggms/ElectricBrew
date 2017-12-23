@@ -2,8 +2,12 @@ package com.gmail.gstewart05;
 
 import com.gmail.gstewart05.deviceservice.cooler.model.devices.Cooler;
 import com.gmail.gstewart05.deviceservice.cooler.service.CoolerService;
+import com.gmail.gstewart05.deviceservice.flow.model.devices.Flow;
+import com.gmail.gstewart05.deviceservice.flow.service.FlowService;
 import com.gmail.gstewart05.deviceservice.heater.model.devices.Heater;
 import com.gmail.gstewart05.deviceservice.heater.service.HeaterService;
+import com.gmail.gstewart05.deviceservice.level.model.devices.Level;
+import com.gmail.gstewart05.deviceservice.level.service.LevelService;
 import com.gmail.gstewart05.deviceservice.pump.model.devices.Pump;
 import com.gmail.gstewart05.deviceservice.pump.service.PumpService;
 import com.gmail.gstewart05.deviceservice.temperature.model.devices.TemperatureProbe;
@@ -30,7 +34,7 @@ public class DeviceServer
 	}
 
 	@Bean
-	public CommandLineRunner demo( TemperatureProbeService pTemperatureProbeService, HeaterService pHeaterService, CoolerService pCoolerService, PumpService pPumpService, ValveService pValveService )
+	public CommandLineRunner demo( TemperatureProbeService pTemperatureProbeService, HeaterService pHeaterService, CoolerService pCoolerService, PumpService pPumpService, ValveService pValveService, LevelService pLevelService, FlowService pFlowService )
 	{
 		return ( args ) ->
 		{
@@ -84,6 +88,21 @@ public class DeviceServer
 
 			lValve = Valve.builder().name( "Mains Water Output" ).build();
 			pValveService.save( lValve );
+
+			Level lLevel = Level.builder().name( "Warm Water" ).build();
+			pLevelService.save( lLevel );
+
+			lLevel = Level.builder().name( "Cold Water" ).build();
+			pLevelService.save( lLevel );
+
+			Flow lFlow = Flow.builder().name( "Warm Water" ).build();
+			pFlowService.save( lFlow );
+
+			lFlow = Flow.builder().name( "Cold Water" ).build();
+			pFlowService.save( lFlow );
+
+			lFlow = Flow.builder().name( "Boiler" ).build();
+			pFlowService.save( lFlow );
 		};
 	}
 }
