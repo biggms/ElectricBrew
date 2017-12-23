@@ -2,10 +2,14 @@ package com.gmail.gstewart05.deviceservice.heatingelement.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.gmail.gstewart05.deviceservice.common.controller.AbstractDeviceChangeController;
+import com.gmail.gstewart05.deviceservice.common.service.change.AbstractDeviceChangeService;
+import com.gmail.gstewart05.deviceservice.common.service.devices.AbstractDeviceService;
 import com.gmail.gstewart05.deviceservice.heatingelement.model.devices.HeatingElement;
 import com.gmail.gstewart05.deviceservice.heatingelement.model.change.HeatingElementChange;
 import com.gmail.gstewart05.deviceservice.heatingelement.service.HeatingElementChangeService;
 import com.gmail.gstewart05.deviceservice.heatingelement.service.HeatingElementService;
+import com.gmail.gstewart05.dto.HeatingElementDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,46 +21,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping( "/heatingelementchange/v1" )
 @RestController
 @SuppressWarnings( "unchecked" )
-public class HeatingElementChangeController
+public class HeatingElementChangeController extends AbstractDeviceChangeController< HeatingElement, HeatingElementDTO, HeatingElementChange >
 {
-	ObjectMapper theObjectMapper = new ObjectMapper();
-
 	@Autowired
 	HeatingElementChangeService theHeatingElementChangeService;
 
 	@Autowired
 	HeatingElementService theHeatingElementService;
 
-	@GetMapping( "" )
-	public ResponseEntity list()
+	@Override
+	public HeatingElementChangeService getChangeService()
 	{
-		return new ResponseEntity( theHeatingElementChangeService.getAll(), HttpStatus.OK );
+		return theHeatingElementChangeService;
 	}
 
-	@GetMapping( "/search/{name}" )
-	public ResponseEntity search( @PathVariable( "name" ) String pName )
+	@Override
+	public String getSimpleName()
 	{
-		HeatingElement lHeatingElement = theHeatingElementService.getByName( pName );
-		if( lHeatingElement == null )
-		{
-			ObjectNode lNode = theObjectMapper.createObjectNode();
-			lNode.put( "status", 404 ).put( "message", "No HeatingElement of mame: " + pName );
-			return new ResponseEntity( lNode.toString(), HttpStatus.NOT_FOUND );
-		}
-		return new ResponseEntity( theHeatingElementChangeService.getByDevice( lHeatingElement ), HttpStatus.OK );
+		return HeatingElementChange.class.getSimpleName();
 	}
 
-	@GetMapping( "/{id}" )
-	public ResponseEntity get( @PathVariable( "id" ) String pID )
+	@Override
+	public HeatingElementService getDeviceService()
 	{
-		HeatingElementChange lEntity = theHeatingElementChangeService.getById( pID );
-		if( lEntity != null )
-		{
-			return new ResponseEntity( lEntity, HttpStatus.OK );
-		}
+		return theHeatingElementService;
+	}
 
-		ObjectNode lNode = theObjectMapper.createObjectNode();
-		lNode.put( "status", 404 ).put( "message", "No HeatingElementChange of ID: " + pID );
-		return new ResponseEntity( lNode.toString(), HttpStatus.NOT_FOUND );
+	@Override
+	public String getDeviceSimpleName()
+	{
+		return HeatingElement.class.getSimpleName();
 	}
 }
