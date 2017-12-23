@@ -29,6 +29,14 @@ public class DTOFactory
 		return lHeaterDTO;
 	}
 
+	public PumpDTO getPumpDTO()
+	{
+		PumpDTO lPumpDTO = new PumpDTO();
+		lPumpDTO.setTemplate( theTemplate );
+		lPumpDTO.setExchange( theExchange );
+		return lPumpDTO;
+	}
+
 	public TemperatureDTO getTemperatureProbeDTO()
 	{
 		TemperatureDTO lTemperatureDTO = new TemperatureDTO();
