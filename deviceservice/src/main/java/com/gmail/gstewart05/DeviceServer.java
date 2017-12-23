@@ -1,5 +1,7 @@
 package com.gmail.gstewart05;
 
+import com.gmail.gstewart05.deviceservice.bubbler.model.devices.Bubbler;
+import com.gmail.gstewart05.deviceservice.bubbler.service.BubblerService;
 import com.gmail.gstewart05.deviceservice.cooler.model.devices.Cooler;
 import com.gmail.gstewart05.deviceservice.cooler.service.CoolerService;
 import com.gmail.gstewart05.deviceservice.flow.model.devices.Flow;
@@ -34,7 +36,7 @@ public class DeviceServer
 	}
 
 	@Bean
-	public CommandLineRunner demo( TemperatureProbeService pTemperatureProbeService, HeaterService pHeaterService, CoolerService pCoolerService, PumpService pPumpService, ValveService pValveService, LevelService pLevelService, FlowService pFlowService )
+	public CommandLineRunner demo( TemperatureProbeService pTemperatureProbeService, HeaterService pHeaterService, CoolerService pCoolerService, PumpService pPumpService, ValveService pValveService, LevelService pLevelService, FlowService pFlowService, BubblerService pBubblerService )
 	{
 		return ( args ) ->
 		{
@@ -103,6 +105,9 @@ public class DeviceServer
 
 			lFlow = Flow.builder().name( "Boiler" ).build();
 			pFlowService.save( lFlow );
+
+			Bubbler lBubbler = Bubbler.builder().name( "Fermenter" ).build();
+			pBubblerService.save( lBubbler );
 		};
 	}
 }

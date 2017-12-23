@@ -13,6 +13,14 @@ public class DTOFactory
 
 	private TopicExchange theExchange = new TopicExchange( "amq.topic" );
 
+	public BubblerDTO getBubblerDTO()
+	{
+		BubblerDTO lBubblerDTO = new BubblerDTO();
+		lBubblerDTO.setTemplate( theTemplate );
+		lBubblerDTO.setExchange( theExchange );
+		return lBubblerDTO;
+	}
+
 	public CoolerDTO getCoolerDTO()
 	{
 		CoolerDTO lCoolerDTO = new CoolerDTO();
