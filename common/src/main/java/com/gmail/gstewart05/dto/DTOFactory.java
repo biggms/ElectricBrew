@@ -29,6 +29,14 @@ public class DTOFactory
 		return lHeaterDTO;
 	}
 
+	public LevelDTO getLevelDTO()
+	{
+		LevelDTO lLevelDTO = new LevelDTO();
+		lLevelDTO.setTemplate( theTemplate );
+		lLevelDTO.setExchange( theExchange );
+		return lLevelDTO;
+	}
+
 	public PumpDTO getPumpDTO()
 	{
 		PumpDTO lPumpDTO = new PumpDTO();
