@@ -4,8 +4,12 @@ import com.gmail.gstewart05.deviceservice.cooler.model.devices.Cooler;
 import com.gmail.gstewart05.deviceservice.cooler.service.CoolerService;
 import com.gmail.gstewart05.deviceservice.heater.model.devices.Heater;
 import com.gmail.gstewart05.deviceservice.heater.service.HeaterService;
+import com.gmail.gstewart05.deviceservice.pump.model.devices.Pump;
+import com.gmail.gstewart05.deviceservice.pump.service.PumpService;
 import com.gmail.gstewart05.deviceservice.temperature.model.devices.TemperatureProbe;
 import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureProbeService;
+import com.gmail.gstewart05.deviceservice.valve.model.devices.Valve;
+import com.gmail.gstewart05.deviceservice.valve.service.ValveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +30,7 @@ public class DeviceServer
 	}
 
 	@Bean
-	public CommandLineRunner demo( TemperatureProbeService pTemperatureProbeService, HeaterService pHeaterService, CoolerService pCoolerService )
+	public CommandLineRunner demo( TemperatureProbeService pTemperatureProbeService, HeaterService pHeaterService, CoolerService pCoolerService, PumpService pPumpService, ValveService pValveService )
 	{
 		return ( args ) ->
 		{
@@ -50,6 +54,36 @@ public class DeviceServer
 
 			Cooler lCooler = Cooler.builder().name( "Freezer" ).build();
 			pCoolerService.save( lCooler );
+
+			Pump lPump = Pump.builder().name( "Warm Water" ).build();
+			pPumpService.save( lPump );
+
+			lPump = Pump.builder().name( "Cold Water" ).build();
+			pPumpService.save( lPump );
+
+			lPump = Pump.builder().name( "Boiler" ).build();
+			pPumpService.save( lPump );
+
+			lPump = Pump.builder().name( "Agitator" ).build();
+			pPumpService.save( lPump );
+
+			Valve lValve = Valve.builder().name( "Warm Water Input" ).build();
+			pValveService.save( lValve );
+
+			lValve = Valve.builder().name( "Warm Water Output" ).build();
+			pValveService.save( lValve );
+
+			lValve = Valve.builder().name( "Cold Water Input" ).build();
+			pValveService.save( lValve );
+
+			lValve = Valve.builder().name( "Cold Water Output" ).build();
+			pValveService.save( lValve );
+
+			lValve = Valve.builder().name( "Mains Water Input" ).build();
+			pValveService.save( lValve );
+
+			lValve = Valve.builder().name( "Mains Water Output" ).build();
+			pValveService.save( lValve );
 		};
 	}
 }

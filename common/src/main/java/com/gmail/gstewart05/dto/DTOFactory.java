@@ -44,4 +44,12 @@ public class DTOFactory
 		lTemperatureDTO.setExchange( theExchange );
 		return lTemperatureDTO;
 	}
+
+	public ValveDTO getValveDTO()
+	{
+		ValveDTO lValveDTO = new ValveDTO();
+		lValveDTO.setTemplate( theTemplate );
+		lValveDTO.setExchange( theExchange );
+		return lValveDTO;
+	}
 }
