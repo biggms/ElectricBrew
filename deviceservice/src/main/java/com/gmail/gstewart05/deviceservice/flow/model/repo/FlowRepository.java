@@ -1,10 +1,11 @@
 package com.gmail.gstewart05.deviceservice.flow.model.repo;
 
-import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceRepository;
-import com.gmail.gstewart05.deviceservice.flow.model.devices.Flow;
+import com.gmail.gstewart05.deviceservice.flow.model.Flow;
+import com.gmail.gstewart05.model.repo.NamedEntityRepository;
+import com.gmail.gstewart05.deviceservice.temperature.model.Temperature;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FlowRepository extends AbstractDeviceRepository< Flow >
+public interface FlowRepository extends NamedEntityRepository< Flow >
 {
 }

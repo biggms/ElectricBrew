@@ -7,11 +7,19 @@ import lombok.ToString;
 @JsonIgnoreProperties( ignoreUnknown = true )
 @Data
 @ToString( callSuper = true )
-public class ValveDTO extends BooleanDTO
+public class ValveDTO extends BaseDTO implements BooleanDTO< ValveDTO >
 {
+	boolean enabled;
+
 	@Override
 	public String getRoute()
 	{
 		return "valve.v1";
+	}
+
+	@Override
+	public ValveDTO getCurrentInstance()
+	{
+		return this;
 	}
 }

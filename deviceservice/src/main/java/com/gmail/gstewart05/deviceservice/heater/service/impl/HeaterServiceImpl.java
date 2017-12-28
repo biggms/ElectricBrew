@@ -1,28 +1,38 @@
 package com.gmail.gstewart05.deviceservice.heater.service.impl;
 
-import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceRepository;
-import com.gmail.gstewart05.deviceservice.common.service.devices.impl.AbstractBooleanActuatorServiceImpl;
-import com.gmail.gstewart05.deviceservice.heater.model.devices.Heater;
+import com.gmail.gstewart05.deviceservice.heater.model.Heater;
 import com.gmail.gstewart05.deviceservice.heater.model.repo.HeaterRepository;
 import com.gmail.gstewart05.deviceservice.heater.service.HeaterService;
-import com.gmail.gstewart05.dto.BooleanDTO;
 import com.gmail.gstewart05.dto.DTOFactory;
 import com.gmail.gstewart05.dto.HeaterDTO;
+import com.gmail.gstewart05.service.NamedService;
+import com.gmail.gstewart05.service.impl.NamedServiceImpl;
+import com.gmail.gstewart05.service.wrappers.OnOffServiceImpl;
+import com.gmail.gstewart05.utils.LogUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
+
 @Service
-public class HeaterServiceImpl extends AbstractBooleanActuatorServiceImpl< Heater, HeaterDTO > implements HeaterService
+@Slf4j
+public class HeaterServiceImpl extends NamedServiceImpl< Heater > implements HeaterService
 {
 	@Autowired
 	HeaterRepository theRepository;
+
 	@Autowired
-	private DTOFactory theDTOFactory;
+	DTOFactory theDTOFactory;
+
+	@Autowired
+	LogUtil theLogUtil;
 
 	@Override
-	public BooleanDTO getDTO()
+	public HeaterRepository getRepository()
 	{
-		return theDTOFactory.getHeaterDTO();
+		return theRepository;
 	}
 
 	@Override
@@ -32,8 +42,20 @@ public class HeaterServiceImpl extends AbstractBooleanActuatorServiceImpl< Heate
 	}
 
 	@Override
-	public AbstractDeviceRepository< Heater > getRepository()
+	public NamedService< Heater > getService()
 	{
-		return theRepository;
+		return this;
+	}
+
+	@Override
+	public LogUtil getLogUtil()
+	{
+		return theLogUtil;
+	}
+
+	@Override
+	public HeaterDTO getDTO()
+	{
+		return theDTOFactory.getHeaterDTO();
 	}
 }

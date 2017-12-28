@@ -1,6 +1,5 @@
 package com.gmail.gstewart05.deviceservice.level.mq;
 
-import com.gmail.gstewart05.deviceservice.level.service.LevelChangeService;
 import com.gmail.gstewart05.deviceservice.level.service.LevelService;
 import com.gmail.gstewart05.dto.LevelDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,6 @@ import javax.transaction.Transactional;
 public class LevelReceiver
 {
 	@Autowired
-	LevelChangeService theLevelChangeService;
-
-	@Autowired
 	LevelService theLevelService;
 
 	@Transactional
@@ -32,8 +28,8 @@ public class LevelReceiver
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
 			key = "level.v1.statechange"
 	) )
-	public void receiveChange( @Payload LevelDTO pLevelDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveStateChange( @Payload LevelDTO pLevelDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theLevelChangeService.handleNewChange( pLevelDTO );
+		theLevelService.handleNewStateChange( pLevelDTO );
 	}
 }

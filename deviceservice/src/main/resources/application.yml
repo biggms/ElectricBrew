@@ -8,6 +8,10 @@ spring:
     console:
       enabled: true
 
+logging:
+  level:
+    ROOT: INFO
+
 eureka:
   instance:
     instanceId: "${spring.application.name}:${random.value}"

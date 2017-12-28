@@ -1,6 +1,5 @@
 package com.gmail.gstewart05.deviceservice.valve.mq;
 
-import com.gmail.gstewart05.deviceservice.valve.service.ValveChangeService;
 import com.gmail.gstewart05.deviceservice.valve.service.ValveService;
 import com.gmail.gstewart05.dto.ValveDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,6 @@ import javax.transaction.Transactional;
 public class ValveReceiver
 {
 	@Autowired
-	ValveChangeService theValveChangeService;
-
-	@Autowired
 	ValveService theValveService;
 
 	@Transactional
@@ -32,19 +28,8 @@ public class ValveReceiver
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
 			key = "valve.v1.statechange"
 	) )
-	public void receiveChange( @Payload ValveDTO pValveDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveStateChange( @Payload ValveDTO pValveDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theValveChangeService.handleNewChange( pValveDTO );
-	}
-
-	@Transactional
-	@RabbitListener( bindings = @QueueBinding(
-			value = @Queue( autoDelete = "true", durable = "false" ),
-			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
-			key = "valve.v1.setstate"
-	) )
-	public void receiveChangeRequest( @Payload ValveDTO pValveDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
-	{
-		theValveService.handleChangeRequest( pValveDTO );
+		theValveService.handleNewStateChange( pValveDTO );
 	}
 }

@@ -7,12 +7,20 @@ import lombok.ToString;
 @JsonIgnoreProperties( ignoreUnknown = true )
 @Data
 @ToString( callSuper = true )
-public class VolumeDTO extends DoubleDTO
+public class VolumeDTO extends BaseDTO implements DoubleDTO< VolumeDTO >
 {
+	double value;
+
 	@Override
 	public String getRoute()
 	{
 		return "volume.v1";
+	}
+
+	@Override
+	public VolumeDTO getCurrentInstance()
+	{
+		return this;
 	}
 
 	@Override

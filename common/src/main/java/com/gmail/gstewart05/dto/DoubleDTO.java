@@ -1,26 +1,28 @@
 package com.gmail.gstewart05.dto;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Data
-public abstract class DoubleDTO extends DTO
+public interface DoubleDTO< T extends BaseDTO & DoubleDTO >
 {
-	String id;
-	double value;
+	@JsonIgnore
+	T getCurrentInstance();
 
-	public abstract String getRoute();
+	void setValue( double pValue );
+	double getValue();
 
-	public void valueChanged( String pName, double pValue )
+	default void valueChanged( String pName, double pValue )
 	{
-		name = pName;
-		value = pValue;
-		template.convertAndSend( exchange.getName(), getRoute() + ".valuechanged", this );
+		T lNew = getCurrentInstance();
+		lNew.setName( pName );
+		lNew.setValue( pValue );
+		lNew.getTemplate().convertAndSend( lNew.getExchange().getName(), lNew.getRoute() + ".valuechanged", this );
 	}
 
-	public void setValue( String pName, double pValue )
+	default void setValue( String pName, double pValue )
 	{
-		name = pName;
-		value = pValue;
-		template.convertAndSend( exchange.getName(), getRoute() + ".setvalue", this );
+		T lNew = getCurrentInstance();
+		lNew.setName( pName );
+		lNew.setValue( pValue );
+		lNew.getTemplate().convertAndSend( lNew.getExchange().getName(), lNew.getRoute() + ".setvalue", this );
 	}
 }

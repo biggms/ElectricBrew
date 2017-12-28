@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties( ignoreUnknown = true )
-public class LogDTO
+public class LogDTO extends BaseDTO
 {
 	String message;
 	String level;
@@ -22,5 +22,11 @@ public class LogDTO
 	public void setLevel( Level pLevel )
 	{
 		level = pLevel.toString();
+	}
+
+	@Override
+	public String getRoute()
+	{
+		return "logging.v1";
 	}
 }

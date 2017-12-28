@@ -1,6 +1,6 @@
 package com.gmail.gstewart05.deviceservice.temperature.mq;
 
-import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureChangeService;
+import com.gmail.gstewart05.deviceservice.temperature.service.TemperatureService;
 import com.gmail.gstewart05.dto.TemperatureDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -20,16 +20,16 @@ import javax.transaction.Transactional;
 public class TemperatureReceiver
 {
 	@Autowired
-	TemperatureChangeService theTemperatureChangeService;
+	TemperatureService theTemperatureService;
 
 	@Transactional
 	@RabbitListener( bindings = @QueueBinding(
 			value = @Queue( autoDelete = "true", durable = "false" ),
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
-			key = "temperature.v1.change"
+			key = "temperature.v1.valuechange"
 	) )
 	public void receive( @Payload TemperatureDTO pTemperatureDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theTemperatureChangeService.handleNewChange( pTemperatureDTO );
+		theTemperatureService.handleNewValueChange( pTemperatureDTO );
 	}
 }

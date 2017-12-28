@@ -1,36 +1,28 @@
 package com.gmail.gstewart05.dto;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Data
-public abstract class BooleanDTO extends DTO
+public interface BooleanDTO< T extends BaseDTO & BooleanDTO >
 {
-	String id;
-	boolean enabled;
+	@JsonIgnore
+	T getCurrentInstance();
 
-	public abstract String getRoute();
+	void setEnabled( boolean pEnabled );
+	boolean isEnabled();
 
-	public void enable( String pName )
+	default void stateChanged( String pName, boolean pState )
 	{
-		setState( pName, true );
+		T lNew = getCurrentInstance();
+		lNew.setName( pName );
+		lNew.setEnabled( pState );
+		lNew.getTemplate().convertAndSend( lNew.getExchange().getName(), lNew.getRoute() + ".statechanged", this );
 	}
 
-	public void disable( String pName )
+	default void setState( String pName, boolean pState )
 	{
-		setState( pName, false );
-	}
-
-	public void stateChanged( String pName, boolean pState )
-	{
-		name = pName;
-		enabled = pState;
-		template.convertAndSend( exchange.getName(), getRoute() + ".statechanged", this );
-	}
-
-	public void setState( String pName, boolean pState )
-	{
-		name = pName;
-		enabled = pState;
-		template.convertAndSend( exchange.getName(), getRoute() + ".setstate", this );
+		T lNew = getCurrentInstance();
+		lNew.setName( pName );
+		lNew.setEnabled( pState );
+		lNew.getTemplate().convertAndSend( lNew.getExchange().getName(), lNew.getRoute() + ".setstate", this );
 	}
 }

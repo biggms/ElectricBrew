@@ -1,10 +1,11 @@
 package com.gmail.gstewart05.deviceservice.bubbler.model.repo;
 
-import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceRepository;
-import com.gmail.gstewart05.deviceservice.bubbler.model.devices.Bubbler;
+import com.gmail.gstewart05.deviceservice.bubbler.model.Bubbler;
+import com.gmail.gstewart05.model.repo.NamedEntityRepository;
+import com.gmail.gstewart05.deviceservice.temperature.model.Temperature;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BubblerRepository extends AbstractDeviceRepository< Bubbler >
+public interface BubblerRepository extends NamedEntityRepository< Bubbler >
 {
 }

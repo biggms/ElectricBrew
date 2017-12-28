@@ -1,28 +1,32 @@
 package com.gmail.gstewart05.deviceservice.pump.service.impl;
 
-import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceRepository;
-import com.gmail.gstewart05.deviceservice.common.service.devices.impl.AbstractBooleanActuatorServiceImpl;
-import com.gmail.gstewart05.deviceservice.pump.model.devices.Pump;
+import com.gmail.gstewart05.deviceservice.pump.model.Pump;
 import com.gmail.gstewart05.deviceservice.pump.model.repo.PumpRepository;
 import com.gmail.gstewart05.deviceservice.pump.service.PumpService;
-import com.gmail.gstewart05.dto.BooleanDTO;
 import com.gmail.gstewart05.dto.DTOFactory;
 import com.gmail.gstewart05.dto.PumpDTO;
+import com.gmail.gstewart05.service.NamedService;
+import com.gmail.gstewart05.service.impl.NamedServiceImpl;
+import com.gmail.gstewart05.utils.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PumpServiceImpl extends AbstractBooleanActuatorServiceImpl< Pump, PumpDTO > implements PumpService
+public class PumpServiceImpl extends NamedServiceImpl< Pump > implements PumpService
 {
 	@Autowired
 	PumpRepository theRepository;
+
 	@Autowired
 	private DTOFactory theDTOFactory;
 
+	@Autowired
+	LogUtil theLogUtil;
+
 	@Override
-	public BooleanDTO getDTO()
+	public PumpRepository getRepository()
 	{
-		return theDTOFactory.getPumpDTO();
+		return theRepository;
 	}
 
 	@Override
@@ -32,8 +36,20 @@ public class PumpServiceImpl extends AbstractBooleanActuatorServiceImpl< Pump, P
 	}
 
 	@Override
-	public AbstractDeviceRepository< Pump > getRepository()
+	public NamedService< Pump > getService()
 	{
-		return theRepository;
+		return this;
+	}
+
+	@Override
+	public LogUtil getLogUtil()
+	{
+		return theLogUtil;
+	}
+
+	@Override
+	public PumpDTO getDTO()
+	{
+		return theDTOFactory.getPumpDTO();
 	}
 }

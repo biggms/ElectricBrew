@@ -7,11 +7,20 @@ import lombok.ToString;
 @JsonIgnoreProperties( ignoreUnknown = true )
 @Data
 @ToString( callSuper = true )
-public class HeaterDTO extends BooleanDTO
+public class HeaterDTO extends BaseDTO implements BooleanDTO, DoubleDTO
 {
+	boolean enabled;
+	double value;
+
 	@Override
 	public String getRoute()
 	{
 		return "heater.v1";
+	}
+
+	@Override
+	public HeaterDTO getCurrentInstance()
+	{
+		return this;
 	}
 }

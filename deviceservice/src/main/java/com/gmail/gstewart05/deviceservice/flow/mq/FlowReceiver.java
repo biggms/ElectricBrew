@@ -1,6 +1,5 @@
 package com.gmail.gstewart05.deviceservice.flow.mq;
 
-import com.gmail.gstewart05.deviceservice.flow.service.FlowChangeService;
 import com.gmail.gstewart05.deviceservice.flow.service.FlowService;
 import com.gmail.gstewart05.dto.FlowDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,6 @@ import javax.transaction.Transactional;
 public class FlowReceiver
 {
 	@Autowired
-	FlowChangeService theFlowChangeService;
-
-	@Autowired
 	FlowService theFlowService;
 
 	@Transactional
@@ -32,8 +28,8 @@ public class FlowReceiver
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
 			key = "flow.v1.statechange"
 	) )
-	public void receiveChange( @Payload FlowDTO pFlowDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveStateChange( @Payload FlowDTO pFlowDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theFlowChangeService.handleNewChange( pFlowDTO );
+		theFlowService.handleNewStateChange( pFlowDTO );
 	}
 }

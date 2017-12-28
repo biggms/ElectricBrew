@@ -1,28 +1,33 @@
 package com.gmail.gstewart05.deviceservice.level.service.impl;
 
-import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceRepository;
-import com.gmail.gstewart05.deviceservice.common.service.devices.impl.AbstractBooleanDeviceServiceImpl;
-import com.gmail.gstewart05.deviceservice.level.model.devices.Level;
+import com.gmail.gstewart05.deviceservice.level.model.Level;
 import com.gmail.gstewart05.deviceservice.level.model.repo.LevelRepository;
 import com.gmail.gstewart05.deviceservice.level.service.LevelService;
-import com.gmail.gstewart05.dto.BooleanDTO;
 import com.gmail.gstewart05.dto.DTOFactory;
 import com.gmail.gstewart05.dto.LevelDTO;
+import com.gmail.gstewart05.service.NamedService;
+import com.gmail.gstewart05.service.impl.NamedServiceImpl;
+import com.gmail.gstewart05.service.wrappers.OnOffServiceImpl;
+import com.gmail.gstewart05.utils.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LevelServiceImpl extends AbstractBooleanDeviceServiceImpl< Level, LevelDTO > implements LevelService
+public class LevelServiceImpl extends NamedServiceImpl< Level > implements LevelService
 {
 	@Autowired
 	LevelRepository theRepository;
+
 	@Autowired
 	private DTOFactory theDTOFactory;
 
+	@Autowired
+	LogUtil theLogUtil;
+
 	@Override
-	public BooleanDTO getDTO()
+	public LevelRepository getRepository()
 	{
-		return theDTOFactory.getLevelDTO();
+		return theRepository;
 	}
 
 	@Override
@@ -32,8 +37,20 @@ public class LevelServiceImpl extends AbstractBooleanDeviceServiceImpl< Level, L
 	}
 
 	@Override
-	public AbstractDeviceRepository< Level > getRepository()
+	public NamedService< Level > getService()
 	{
-		return theRepository;
+		return this;
+	}
+
+	@Override
+	public LogUtil getLogUtil()
+	{
+		return theLogUtil;
+	}
+
+	@Override
+	public LevelDTO getDTO()
+	{
+		return theDTOFactory.getLevelDTO();
 	}
 }

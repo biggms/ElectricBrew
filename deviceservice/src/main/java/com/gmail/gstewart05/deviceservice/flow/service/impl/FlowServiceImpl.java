@@ -1,28 +1,33 @@
 package com.gmail.gstewart05.deviceservice.flow.service.impl;
 
-import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceRepository;
-import com.gmail.gstewart05.deviceservice.common.service.devices.impl.AbstractBooleanDeviceServiceImpl;
-import com.gmail.gstewart05.deviceservice.flow.model.devices.Flow;
+import com.gmail.gstewart05.deviceservice.flow.model.Flow;
 import com.gmail.gstewart05.deviceservice.flow.model.repo.FlowRepository;
 import com.gmail.gstewart05.deviceservice.flow.service.FlowService;
-import com.gmail.gstewart05.dto.BooleanDTO;
 import com.gmail.gstewart05.dto.DTOFactory;
 import com.gmail.gstewart05.dto.FlowDTO;
+import com.gmail.gstewart05.service.NamedService;
+import com.gmail.gstewart05.service.impl.NamedServiceImpl;
+import com.gmail.gstewart05.service.wrappers.OnOffServiceImpl;
+import com.gmail.gstewart05.utils.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FlowServiceImpl extends AbstractBooleanDeviceServiceImpl< Flow, FlowDTO > implements FlowService
+public class FlowServiceImpl extends NamedServiceImpl< Flow > implements FlowService
 {
 	@Autowired
 	FlowRepository theRepository;
+
 	@Autowired
 	private DTOFactory theDTOFactory;
 
+	@Autowired
+	LogUtil theLogUtil;
+
 	@Override
-	public BooleanDTO getDTO()
+	public FlowRepository getRepository()
 	{
-		return theDTOFactory.getFlowDTO();
+		return theRepository;
 	}
 
 	@Override
@@ -32,8 +37,20 @@ public class FlowServiceImpl extends AbstractBooleanDeviceServiceImpl< Flow, Flo
 	}
 
 	@Override
-	public AbstractDeviceRepository< Flow > getRepository()
+	public NamedService< Flow > getService()
 	{
-		return theRepository;
+		return this;
+	}
+
+	@Override
+	public LogUtil getLogUtil()
+	{
+		return theLogUtil;
+	}
+
+	@Override
+	public FlowDTO getDTO()
+	{
+		return theDTOFactory.getFlowDTO();
 	}
 }

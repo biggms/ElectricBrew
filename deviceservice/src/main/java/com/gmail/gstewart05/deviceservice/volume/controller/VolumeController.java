@@ -1,20 +1,25 @@
 package com.gmail.gstewart05.deviceservice.volume.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gmail.gstewart05.deviceservice.common.controller.AbstractDeviceController;
-import com.gmail.gstewart05.deviceservice.volume.model.devices.Volume;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.gmail.gstewart05.controller.NamedController;
+import com.gmail.gstewart05.deviceservice.volume.model.Volume;
 import com.gmail.gstewart05.deviceservice.volume.service.VolumeService;
-import com.gmail.gstewart05.dto.VolumeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping( "/volume/v1" )
 @RestController
 @SuppressWarnings( "unchecked" )
-public class VolumeController extends AbstractDeviceController< Volume, VolumeDTO >
+public class VolumeController extends NamedController< Volume >
 {
-	ObjectMapper theObjectMapper = new ObjectMapper();
+	@Autowired
+	ObjectMapper theObjectMapper;
 
 	@Autowired
 	VolumeService theVolumeService;
@@ -23,11 +28,5 @@ public class VolumeController extends AbstractDeviceController< Volume, VolumeDT
 	public VolumeService getService()
 	{
 		return theVolumeService;
-	}
-
-	@Override
-	public String getSimpleName()
-	{
-		return Volume.class.getSimpleName();
 	}
 }

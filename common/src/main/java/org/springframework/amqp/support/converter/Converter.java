@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,7 +13,8 @@ public class Converter extends Jackson2JsonMessageConverter
 {
 	static final String thePackage = "com.gmail.gstewart05.dto";
 
-	ObjectMapper theMapper = new ObjectMapper();
+	@Autowired
+	ObjectMapper theMapper;
 
 	@Override
 	public Object fromMessage( Message pMessage )

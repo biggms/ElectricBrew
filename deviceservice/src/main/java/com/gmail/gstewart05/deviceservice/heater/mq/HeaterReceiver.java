@@ -1,6 +1,5 @@
 package com.gmail.gstewart05.deviceservice.heater.mq;
 
-import com.gmail.gstewart05.deviceservice.heater.service.HeaterChangeService;
 import com.gmail.gstewart05.deviceservice.heater.service.HeaterService;
 import com.gmail.gstewart05.dto.HeaterDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,6 @@ import javax.transaction.Transactional;
 public class HeaterReceiver
 {
 	@Autowired
-	HeaterChangeService theHeaterChangeService;
-
-	@Autowired
 	HeaterService theHeaterService;
 
 	@Transactional
@@ -32,19 +28,19 @@ public class HeaterReceiver
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
 			key = "heater.v1.statechange"
 	) )
-	public void receiveChange( @Payload HeaterDTO pHeaterDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveStateChange( @Payload HeaterDTO pHeaterDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theHeaterChangeService.handleNewChange( pHeaterDTO );
+		theHeaterService.handleNewStateChange( pHeaterDTO );
 	}
 
 	@Transactional
 	@RabbitListener( bindings = @QueueBinding(
 			value = @Queue( autoDelete = "true", durable = "false" ),
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
-			key = "heater.v1.setstate"
+			key = "heater.v1.valuechange"
 	) )
-	public void receiveChangeRequest( @Payload HeaterDTO pHeaterDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveValueChange( @Payload HeaterDTO pHeaterDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theHeaterService.handleChangeRequest( pHeaterDTO );
+		theHeaterService.handleNewValueChange( pHeaterDTO );
 	}
 }

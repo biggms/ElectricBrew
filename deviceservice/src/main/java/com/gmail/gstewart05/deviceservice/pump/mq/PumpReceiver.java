@@ -1,6 +1,5 @@
 package com.gmail.gstewart05.deviceservice.pump.mq;
 
-import com.gmail.gstewart05.deviceservice.pump.service.PumpChangeService;
 import com.gmail.gstewart05.deviceservice.pump.service.PumpService;
 import com.gmail.gstewart05.dto.PumpDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,6 @@ import javax.transaction.Transactional;
 public class PumpReceiver
 {
 	@Autowired
-	PumpChangeService thePumpChangeService;
-
-	@Autowired
 	PumpService thePumpService;
 
 	@Transactional
@@ -32,19 +28,19 @@ public class PumpReceiver
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
 			key = "pump.v1.statechange"
 	) )
-	public void receiveChange( @Payload PumpDTO pPumpDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveStateChange( @Payload PumpDTO pPumpDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		thePumpChangeService.handleNewChange( pPumpDTO );
+		thePumpService.handleNewStateChange( pPumpDTO );
 	}
 
 	@Transactional
 	@RabbitListener( bindings = @QueueBinding(
 			value = @Queue( autoDelete = "true", durable = "false" ),
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
-			key = "pump.v1.setstate"
+			key = "pump.v1.valuechange"
 	) )
-	public void receiveChangeRequest( @Payload PumpDTO pPumpDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveValueChange( @Payload PumpDTO pPumpDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		thePumpService.handleChangeRequest( pPumpDTO );
+		thePumpService.handleNewValueChange( pPumpDTO );
 	}
 }

@@ -1,28 +1,33 @@
 package com.gmail.gstewart05.deviceservice.bubbler.service.impl;
 
-import com.gmail.gstewart05.deviceservice.common.model.repo.AbstractDeviceRepository;
-import com.gmail.gstewart05.deviceservice.common.service.devices.impl.AbstractBooleanDeviceServiceImpl;
-import com.gmail.gstewart05.deviceservice.bubbler.model.devices.Bubbler;
+import com.gmail.gstewart05.deviceservice.bubbler.model.Bubbler;
 import com.gmail.gstewart05.deviceservice.bubbler.model.repo.BubblerRepository;
 import com.gmail.gstewart05.deviceservice.bubbler.service.BubblerService;
-import com.gmail.gstewart05.dto.BooleanDTO;
 import com.gmail.gstewart05.dto.DTOFactory;
 import com.gmail.gstewart05.dto.BubblerDTO;
+import com.gmail.gstewart05.service.NamedService;
+import com.gmail.gstewart05.service.impl.NamedServiceImpl;
+import com.gmail.gstewart05.service.wrappers.OnOffServiceImpl;
+import com.gmail.gstewart05.utils.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BubblerServiceImpl extends AbstractBooleanDeviceServiceImpl< Bubbler, BubblerDTO > implements BubblerService
+public class BubblerServiceImpl extends NamedServiceImpl< Bubbler > implements BubblerService
 {
 	@Autowired
 	BubblerRepository theRepository;
+
 	@Autowired
 	private DTOFactory theDTOFactory;
 
+	@Autowired
+	LogUtil theLogUtil;
+
 	@Override
-	public BooleanDTO getDTO()
+	public BubblerRepository getRepository()
 	{
-		return theDTOFactory.getBubblerDTO();
+		return theRepository;
 	}
 
 	@Override
@@ -32,8 +37,20 @@ public class BubblerServiceImpl extends AbstractBooleanDeviceServiceImpl< Bubble
 	}
 
 	@Override
-	public AbstractDeviceRepository< Bubbler > getRepository()
+	public NamedService< Bubbler > getService()
 	{
-		return theRepository;
+		return this;
+	}
+
+	@Override
+	public LogUtil getLogUtil()
+	{
+		return theLogUtil;
+	}
+
+	@Override
+	public BubblerDTO getDTO()
+	{
+		return theDTOFactory.getBubblerDTO();
 	}
 }

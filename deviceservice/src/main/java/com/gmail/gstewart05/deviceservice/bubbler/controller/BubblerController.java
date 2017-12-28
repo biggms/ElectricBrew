@@ -1,9 +1,9 @@
 package com.gmail.gstewart05.deviceservice.bubbler.controller;
 
-import com.gmail.gstewart05.deviceservice.common.controller.AbstractDeviceController;
-import com.gmail.gstewart05.deviceservice.bubbler.model.devices.Bubbler;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gmail.gstewart05.controller.NamedController;
+import com.gmail.gstewart05.deviceservice.bubbler.model.Bubbler;
 import com.gmail.gstewart05.deviceservice.bubbler.service.BubblerService;
-import com.gmail.gstewart05.dto.BubblerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping( "/bubbler/v1" )
 @RestController
 @SuppressWarnings( "unchecked" )
-public class BubblerController extends AbstractDeviceController< Bubbler, BubblerDTO >
+public class BubblerController extends NamedController< Bubbler >
 {
 	@Autowired
 	BubblerService theBubblerService;
@@ -20,11 +20,5 @@ public class BubblerController extends AbstractDeviceController< Bubbler, Bubble
 	public BubblerService getService()
 	{
 		return theBubblerService;
-	}
-
-	@Override
-	public String getSimpleName()
-	{
-		return Bubbler.class.getSimpleName();
 	}
 }

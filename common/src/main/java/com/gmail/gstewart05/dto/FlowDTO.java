@@ -7,12 +7,20 @@ import lombok.ToString;
 @JsonIgnoreProperties( ignoreUnknown = true )
 @Data
 @ToString( callSuper = true )
-public class FlowDTO extends BooleanDTO
+public class FlowDTO extends BaseDTO implements BooleanDTO< FlowDTO >
 {
+	boolean enabled;
+
 	@Override
 	public String getRoute()
 	{
 		return "flow.v1";
+	}
+
+	@Override
+	public FlowDTO getCurrentInstance()
+	{
+		return this;
 	}
 
 	@Override

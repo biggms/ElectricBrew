@@ -1,6 +1,5 @@
 package com.gmail.gstewart05.deviceservice.cooler.mq;
 
-import com.gmail.gstewart05.deviceservice.cooler.service.CoolerChangeService;
 import com.gmail.gstewart05.deviceservice.cooler.service.CoolerService;
 import com.gmail.gstewart05.dto.CoolerDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,6 @@ import javax.transaction.Transactional;
 public class CoolerReceiver
 {
 	@Autowired
-	CoolerChangeService theCoolerChangeService;
-
-	@Autowired
 	CoolerService theCoolerService;
 
 	@Transactional
@@ -32,19 +28,19 @@ public class CoolerReceiver
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
 			key = "cooler.v1.statechange"
 	) )
-	public void receiveChange( @Payload CoolerDTO pCoolerDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveStateChange( @Payload CoolerDTO pCoolerDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theCoolerChangeService.handleNewChange( pCoolerDTO );
+		theCoolerService.handleNewStateChange( pCoolerDTO );
 	}
 
 	@Transactional
 	@RabbitListener( bindings = @QueueBinding(
 			value = @Queue( autoDelete = "true", durable = "false" ),
 			exchange = @Exchange( value = "amq.topic", type = "topic", durable = "true" ),
-			key = "cooler.v1.setstate"
+			key = "cooler.v1.valuechange"
 	) )
-	public void receiveChangeRequest( @Payload CoolerDTO pCoolerDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
+	public void receiveValueChange( @Payload CoolerDTO pCoolerDTO, @Header( AmqpHeaders.RECEIVED_ROUTING_KEY ) String pKey ) throws InterruptedException
 	{
-		theCoolerService.handleChangeRequest( pCoolerDTO );
+		theCoolerService.handleNewValueChange( pCoolerDTO );
 	}
 }
